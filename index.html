@@ -663,20 +663,33 @@
           response.json()
       ) .then(body => {
         console.log(body)
+        console.log(body.photos[0].src.large)
+
         document.querySelector(".load-images").addEventListener("click", function() {
 
-       
         let primaryImagesBtn = document.getElementsByClassName(".load-images")
-        let cardImage = document.querySelector(".card rect")
+        let cardSvg = document.querySelector(".card svg")
+        let card= document.querySelector(".card")
 
-        
-        let Cians_Special_Function = () => {
-          for(let i = 0; i < body.photos.length; i++) {
-            let obj = body.photos.src.large[i]
-            cardImage[i].src = obj
-            }
-            }
-          });
+        // remove the 
+        card.removeChild(cardSvg)
+        // add img tag 
+        let imgTag = document.createElement("img")
+        imgTag.setAttribute("src", body.photos[0].src.large)
+        imgTag.classList.add("bd-placeholder-img")
+        imgTag.classList.add("card-img-top")
+        imgTag.setAttribute("width", "100%")
+        imgTag.setAttribute("height", "225px")
+        card.prepend(imgTag)
+        })
+
+        // let Cians_Special_Function = () => {
+        //   for(let i = 0; i < body.photos.length; i++) {
+        //     let obj = body.photos.src.large[i]
+        //     cardImage[i].src = obj
+        //     }
+        //     }
+        //   })
         
       }).catch(err => console.log(err))
 
