@@ -652,49 +652,65 @@
 
 
     <script>
-       
+       window.onload = () => {
+        document.querySelector(".album").innerHTML = "" ; 
 
-      window.onload = () => {
         fetch("https://api.pexels.com/v1/search?query=your-query" ,  {
           "method":"GET" ,
           "headers": {          
           "Authorization": "563492ad6f91700001000001126f43577e8147d28d827ef1718c99fe"}
-      }).then(response => 
-          response.json()
-      ) .then(body => {
+      })
+      .then(response => response.json())
+      .then(body =>  {
         console.log(body)
-        console.log(body.photos[0].src.large)
 
-        document.querySelector(".load-images").addEventListener("click", function() {
+        document.querySelector(".album").classList.add("container")
+        let newRowNode = document.createElement("div")
+          newRowNode.className = "row" ;
+          newRowNode.className = "album row" ;
+        document.querySelector(".album").appendChild(newRowNode)
 
-        let primaryImagesBtn = document.getElementsByClassName(".load-images")
-        let cardSvg = document.querySelector(".card svg")
-        let card= document.querySelector(".card")
+        for (let i = 0; i < body.photos.length; i++) {
+          const obj = body.photos[i];
 
-        // remove the 
-        card.removeChild(cardSvg)
-        // add img tag 
-        let imgTag = document.createElement("img")
-        imgTag.setAttribute("src", body.photos[0].src.large)
-        imgTag.classList.add("bd-placeholder-img")
-        imgTag.classList.add("card-img-top")
-        imgTag.setAttribute("width", "100%")
-        imgTag.setAttribute("height", "225px")
-        card.prepend(imgTag)
-        })
+          let newCardNode = document.createElement("div")
+          newCardNode.classList.add("card")
+          newCardNode.classList.add("col-4")
+          newCardNode.classList.add("d-inline")
+          newCardNode.setAttribute("style", "width: 10rem")
+          
 
-        // let Cians_Special_Function = () => {
-        //   for(let i = 0; i < body.photos.length; i++) {
-        //     let obj = body.photos.src.large[i]
-        //     cardImage[i].src = obj
-        //     }
-        //     }
-        //   })
+          newCardNode.innerHTML = `
+            <img class="card-img-top" src="${obj.src.tiny}" width="100%" style ="object-fit: cover"  alt="Card image cap">
+            <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          `;
+
+          newRowNode.appendChild(newCardNode)
+
+          document.querySelector(".album .row").appendChild(newCardNode)
+
+          
+        }
+
+
+
+      }  )
+
+
+
+
+      }
+
         
-      }).catch(err => console.log(err))
 
-    }
-      
+
+       
+
+     
     </script>
   </body>
 </html>
