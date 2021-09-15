@@ -198,7 +198,7 @@
             them in a cool way!
           </p>
           <p>
-            <a href="#" class="btn btn-primary my-2">Load Images</a>
+            <a href="#" class="btn btn-primary my-2 load-images">Load Images</a>
             <a href="#" class="btn btn-secondary my-2">Load Secondary Images</a>
           </p>
         </div>
@@ -652,17 +652,33 @@
 
 
     <script>
-      
+       
+
       window.onload = () => {
         fetch("https://api.pexels.com/v1/search?query=your-query" ,  {
           "method":"GET" ,
           "headers": {          
           "Authorization": "563492ad6f91700001000001126f43577e8147d28d827ef1718c99fe"}
       }).then(response => 
-          console.log(response.json())
-      )
+          response.json()
+      ) .then(body => {
+        console.log(body)
+        document.querySelector(".load-images").addEventListener("click", function() {
 
+       
+        let primaryImagesBtn = document.getElementsByClassName(".load-images")
+        let cardImage = document.querySelector(".card rect")
 
+        
+        let Cians_Special_Function = () => {
+          for(let i = 0; i < body.photos.length; i++) {
+            let obj = body.photos.src.large[i]
+            cardImage[i].src = obj
+            }
+            }
+          });
+        
+      }).catch(err => console.log(err))
 
     }
       
