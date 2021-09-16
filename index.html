@@ -661,6 +661,19 @@
           newRowNode.className = "row" ;
           newRowNode.className = "album row" ;
         document.querySelector(".album").appendChild(newRowNode)
+        document.querySelector(".jumbotron-heading").remove()
+        document.querySelector(".lead").remove()
+       const inputNode = document.createElement("div")
+        inputNode.className = "input-group mb-3"
+        inputNode.innerHTML = `
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1">Search</span>
+        </div>
+        <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" onchange="search()">
+        `
+
+
+        document.querySelector(".jumbotron").prepend()
 
         fetch("https://api.pexels.com/v1/search?query=kittens" ,  {
           "method":"GET" ,
@@ -809,6 +822,9 @@
       let hide = (event) => {
         event.currentTarget.closest(".col-4").remove()
       }
+
+
+      const search() = 
     </script>
   </body>
 </html>
