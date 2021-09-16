@@ -688,11 +688,33 @@
 
           newCardNode.innerHTML = `
             <img class="card-img-top" src="${obj.src.tiny}" width="100%" style ="object-fit: cover"  alt="Card image cap">
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+                            <div class="card-body">
+                  <p class="card-text">
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit
+                    longer.
+                  </p>
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div class="btn-group">
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                      >
+                        View
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                        onclick="hide(event)"
+                      >
+                        Hide
+                      </button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
           `;
 
           newRowNode.appendChild(newCardNode)
@@ -740,11 +762,33 @@
 
           newCardNode.innerHTML = `
             <img class="card-img-top" src="${obj.src.tiny}" width="100%" style ="object-fit: cover"  alt="Card image cap">
-            <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
+                            <div class="card-body">
+                  <p class="card-text">
+                    This is a wider card with supporting text below as a natural
+                    lead-in to additional content. This content is a little bit
+                    longer.
+                  </p>
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div class="btn-group">
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                      >
+                        View
+                      </button>
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-secondary"
+                        onclick="hide(event)"
+                      >
+                        Hide
+                      </button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
           `;
 
           newRowNode.appendChild(newCardNode)
@@ -755,18 +799,13 @@
             }
           })
         })
-
-
-
-
-      
-
-        
-
-
-       
-
      
+    </script> 
+
+    <script>
+      let hide = (event) => {
+        event.currentTarget.closest(".col-4").remove()
+      }
     </script>
   </body>
 </html>
