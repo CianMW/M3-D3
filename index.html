@@ -686,6 +686,8 @@
           newCardNode.setAttribute("style", "width: 10rem")
           
 
+          let IDCODE = body.photos[i].id
+
           newCardNode.innerHTML = `
             <img class="card-img-top" src="${obj.src.tiny}" width="100%" style ="object-fit: cover"  alt="Card image cap">
                             <div class="card-body">
@@ -712,7 +714,7 @@
                         Hide
                       </button>
                     </div>
-                    <small class="text-muted">9 mins</small>
+                    <small class="text-muted">ID: ${IDCODE}</small>
                   </div>
                 </div>
           `;
@@ -758,6 +760,7 @@
           newCardNode.classList.add("col-4")
           newCardNode.classList.add("d-inline")
           newCardNode.setAttribute("style", "width: 10rem")
+          let IDCODE = body.photos[i].id
           
 
           newCardNode.innerHTML = `
@@ -786,7 +789,7 @@
                         Hide
                       </button>
                     </div>
-                    <small class="text-muted">9 mins</small>
+                    <small class="text-muted">ID: ${IDCODE}</small>
                   </div>
                 </div>
           `;
