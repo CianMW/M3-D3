@@ -199,7 +199,7 @@
           </p>
           <p>
             <a href="#" class="btn btn-primary my-2 load-images">Load Images</a>
-            <a href="#" class="btn btn-secondary my-2">Load Secondary Images</a>
+            <a href="#" class="btn btn-secondary my-2 load-images-2">Load Secondary Images</a>
           </p>
         </div>
       </section>
@@ -652,10 +652,17 @@
 
 
     <script>
+
+      //prepares the api to be loaded with the "load images" button
        window.onload = () => {
         document.querySelector(".album").innerHTML = "" ; 
+        document.querySelector(".album").classList.add("container")
+        let newRowNode = document.createElement("div")
+          newRowNode.className = "row" ;
+          newRowNode.className = "album row" ;
+        document.querySelector(".album").appendChild(newRowNode)
 
-        fetch("https://api.pexels.com/v1/search?query=your-query" ,  {
+        fetch("https://api.pexels.com/v1/search?query=kittens" ,  {
           "method":"GET" ,
           "headers": {          
           "Authorization": "563492ad6f91700001000001126f43577e8147d28d827ef1718c99fe"}
@@ -664,12 +671,11 @@
       .then(body =>  {
         console.log(body)
 
-        document.querySelector(".album").classList.add("container")
-        let newRowNode = document.createElement("div")
-          newRowNode.className = "row" ;
-          newRowNode.className = "album row" ;
-        document.querySelector(".album").appendChild(newRowNode)
 
+
+      document.querySelector(".load-images").addEventListener("click", ()=>{
+        document.querySelector(".album .row").innerHTML = ""
+      
         for (let i = 0; i < body.photos.length; i++) {
           const obj = body.photos[i];
 
@@ -692,18 +698,68 @@
           newRowNode.appendChild(newCardNode)
 
           document.querySelector(".album .row").appendChild(newCardNode)
-
+       
           
         }
-
-
-
-      }  )
-
-
-
-
+        })
+       })
       }
+
+
+ document.querySelector(".load-images-2").addEventListener("click", function(){
+          document.querySelector(".album .row").innerHTML = ""
+
+        fetch("https://api.pexels.com/v1/search?query=puppy" ,  {
+          "method":"GET" ,
+          "headers": {          
+          "Authorization": "563492ad6f91700001000001126f43577e8147d28d827ef1718c99fe"}
+      })
+      .then(response => response.json())
+      .then(body =>  {
+        console.log(body)
+
+
+
+        document.querySelector(".album").classList.add("container")
+        let newRowNode = document.createElement("div")
+          newRowNode.className = "row" ;
+          newRowNode.className = "album row" ;
+        document.querySelector(".album").appendChild(newRowNode)
+     
+
+      
+        for (let i = 0; i < body.photos.length; i++) {
+          const obj = body.photos[i];
+
+          let newCardNode = document.createElement("div")
+          newCardNode.classList.add("card")
+          newCardNode.classList.add("col-4")
+          newCardNode.classList.add("d-inline")
+          newCardNode.setAttribute("style", "width: 10rem")
+          
+
+          newCardNode.innerHTML = `
+            <img class="card-img-top" src="${obj.src.tiny}" width="100%" style ="object-fit: cover"  alt="Card image cap">
+            <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          `;
+
+          newRowNode.appendChild(newCardNode)
+
+          document.querySelector(".album .row").appendChild(newCardNode)
+       
+          
+            }
+          })
+        })
+
+
+
+
+      
 
         
 
