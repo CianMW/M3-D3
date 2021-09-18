@@ -647,6 +647,7 @@
 
 
     <script>
+<<<<<<< Updated upstream
       const loadArtist = () => {
         fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
 	      "method": "GET",
@@ -669,6 +670,48 @@
         loadArtist()
         }
       
+=======
+       
+
+window.onload = () => {
+//     fetch("https://deezerdevs-deezer.p.rapidapi.com/track/eminem", {
+// 	"method": "GET",
+// 	"headers": {
+// 		"x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+// 		"x-rapidapi-key": "87cf04f455mshd260e6df25f60bap1b8868jsne2efda3b987d"
+// 	}
+// })
+//     .then(response => {
+//       return response.json()
+//     })
+//     .then(body => {
+//       console.log(body)
+//     })
+//     .catch(err => {
+//   	console.error(err)})
+//     }
+
+    fetch("https://deezerdevs-deezer.p.rapidapi.com/track/%7Bid%7D", {
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+		"x-rapidapi-key": "87cf04f455mshd260e6df25f60bap1b8868jsne2efda3b987d"
+	}
+})
+.then(response => {
+  response.json()
+  return console.log(response)
+})
+// .then(data => {
+//   console.log(data)
+//   return data
+// })
+.catch(err => {
+	console.error(err);
+})
+
+}
+>>>>>>> Stashed changes
     </script>
   </body>
 </html>
