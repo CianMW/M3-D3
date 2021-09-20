@@ -634,6 +634,8 @@
         </p>
       </div>
     </footer>
+
+
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
@@ -647,68 +649,60 @@
 
 
     <script>
-      const loadArtist = () => {
-        fetch("https://deezerdevs-deezer.p.rapidapi.com/search?q=eminem", {
-	      "method": "GET",
-	      "headers": {
-      	"x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
-      	"x-rapidapi-key": "87cf04f455mshd260e6df25f60bap1b8868jsne2efda3b987d",
-        // supposedly don't need this "Authorization": "YOUR API KEY"
-        }})
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data)
-        })
-        .catch(err => {
-        	console.error(err)
-        })
+
+      const loadImages = () => {
+        fetch("https://api.pexels.com/v1/search?query=dogs", {
+          "headers": {
+            "Authorization": "563492ad6f91700001000001d99276bcb4d4402fbf7f8f502c81c2ba"}
+          })
+          .then(body => {
+            console.log(body)
+            return body.json()
+          })
+          .then(data => {
+            console.log(data)
+
+            let obj = data.photos
+
+            // DOM
+            const row = document.querySelector(".album .row")
+            row.innerHTML = ""
+
+            // let col = document.createElement("div")
+            // col.classList.add("col-md-4")
+
+            for(let i = 0; i < obj.length; i++) {
+              let col = document.createElement("div")
+              col.classList.add("col-md-4")
+
+              col.innerHTML = `
+              <div class="card mb-4 shadow-sm">
+                <img src="${obj[i].src.medium}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <p class="card-text">${obj[i].photographer}</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary"> View </button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary"> Edit </button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>`
+
+            row.append(col)
+            }
+          })
+          .catch(err => console.log(err))
         }
 
-        window.onload = () => {
-        console.log("------------------------------")
-        loadArtist()
-        }
-      
-       
-
-window.onload = () => {
-//     fetch("https://deezerdevs-deezer.p.rapidapi.com/track/eminem", {
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
-// 		"x-rapidapi-key": "87cf04f455mshd260e6df25f60bap1b8868jsne2efda3b987d"
-// 	}
-// })
-//     .then(response => {
-//       return response.json()
-//     })
-//     .then(body => {
-//       console.log(body)
-//     })
-//     .catch(err => {
-//   	console.error(err)})
-//     }
-
-    fetch("https://deezerdevs-deezer.p.rapidapi.com/track/%7Bid%7D", {
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
-		"x-rapidapi-key": "87cf04f455mshd260e6df25f60bap1b8868jsne2efda3b987d"
-	}
-})
-.then(response => {
-  response.json()
-  return console.log(response)
-})
-// .then(data => {
-//   console.log(data)
-//   return data
-// })
-.catch(err => {
-	console.error(err);
-})
-
-}
+      window.onload = () => {
+        loadImages()
+      }
     </script>
   </body>
 </html>
+
+
+
+<!--Authorization 563492ad6f91700001000001d99276bcb4d4402fbf7f8f502c81c2ba -->
