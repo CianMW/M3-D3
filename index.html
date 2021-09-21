@@ -651,11 +651,9 @@
             const row = document.querySelector(".album .row")
             row.innerHTML = ""
 
-            // let col = document.createElement("div")
-            // col.classList.add("col-md-4")
-
             for(let i = 0; i < obj.length; i++) {
               let col = document.createElement("div")
+              col.classList.add("col-md-4")
               col.classList.add("col-md-4")
 
               col.innerHTML = `
@@ -665,7 +663,7 @@
                   <p class="card-text">${obj[i].photographer}</p>
                   <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                      <button type="button" class="btn btn-sm btn-outline-secondary"> Hide </button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary" onclick="hideCard(event)"> Hide </button>
                       <button type="button" class="btn btn-sm btn-outline-secondary"> Edit </button>
                     </div>
                     <small class="text-muted">9 mins</small>
@@ -723,11 +721,18 @@
           .catch(err => console.log(err))
         }
 
+        let hideCard = (event) => {
+        event.currentTarget.closest(".col-4").remove()
+      }
+
       window.onload = () => {
 
         // Makes sure the page is empty on load
         const bodyOfCards = document.querySelector("main .album")
-        bodyOfCards.innerHTML = ` `
+        // bodyOfCards.innerHTML = ` `
+
+
+
       }
     </script>
   </body>
